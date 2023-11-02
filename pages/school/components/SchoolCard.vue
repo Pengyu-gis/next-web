@@ -3,6 +3,7 @@
     
     <div slot="header">
       <b :id="`school:${school?.U_Name_EN}`">{{ (lang == 'zh' ? school?.U_Name_CN : school?.U_Name_EN) || (school?.U_Name_CN || school?.U_Name_EN || '-') }}</b>
+      <a v-if="lang == 'en' && school?.U_Lat && school?.U_Lon" :href="`https://maps.google.com/?q=${school?.U_Lat},${school?.U_Lon}`"><i class="el-icon-location-outline"></i></a>
     </div>
     {{ lang == 'zh' ? '城市: ' : 'City: ' }} {{ (lang == 'zh' ? school?.C_Name_CN : school?.U_City) || (school?.C_Name_CN || school?.U_City || '-') }}
     <br/>
@@ -12,7 +13,8 @@
     <br/>
     {{ 'URL: ' }} <a :href="school?.U_URL">{{ school?.U_URL || '-' }}</a>
     <br/>
-    {{ lang == 'zh' ? '简介: ' : 'Description: ' }} {{ (lang == 'zh' ? school?.Description_CN : school?.Description_EN) || (school?.Description_CN || school?.Description_EN || '-') }}
+    {{ lang == 'zh' ? '简介: ' : 'Description: ' }}
+    <span v-html="(lang == 'zh' ? school?.Description_CN : school?.Description_EN) || (school?.Description_CN || school?.Description_EN || '-')"></span>
     <div v-if="people">
       <div v-for="p in Object.keys(people)" :key="p">
         <!-- 老师信息 -->
@@ -23,10 +25,11 @@
           <el-tag v-if="people[p]?.P_Physical_Geography === '1'" size="small">{{ lang == 'zh' ? '自然地理' : 'Physical Geography' }}</el-tag>
           <el-tag v-if="people[p]?.P_Human_Geography === '1'" size="small">{{ lang == 'zh' ? '人文地理' : 'Human Geography' }}</el-tag>
           <el-tag v-if="people[p]?.P_Urban_Planning === '1'" size="small">{{ lang == 'zh' ? '规划' : 'Urban Planning' }}</el-tag>
+          <el-tag v-if="people[p]?.P_Transportation === '1'" size="small">{{ lang == 'zh' ? '交通' : 'Transportation' }}</el-tag>
           <el-tag v-if="people[p]?.P_GIS === '1'" size="small">GIS</el-tag>
           <el-tag v-if="people[p]?.P_RS === '1'" size="small">RS</el-tag>
           <el-tag v-if="people[p]?.P_GNSS === '1'" size="small">GNSS</el-tag>
-          <el-tag v-for="t in splitInterests(people[p]?.P_Research_Interests)" :key="t" style="margin-right: 6px" size="small">{{ t }}</el-tag>
+          <el-tag v-for="(t, index) in splitInterests(people[p]?.P_Research_Interests)" :key="t + index" class="custom-tag" size="small">{{ t }}</el-tag>
         </p>
       </div>
     </div>
@@ -34,7 +37,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   props: {
     school: {
@@ -45,14 +47,16 @@ export default {
       type: Object,
       default: () => (null),
     },
+    lang: {
+      type: String,
+      default: 'en'
+    }
   },
   data() {
     return {
     };
   },
-  computed: {
-    ...mapState({ lang: 'language' }),
-  },
+  computed: {},
   methods: {
     splitInterests(interests) {
       if(!interests){
@@ -70,5 +74,8 @@ export default {
 <style scoped>
 .card{
   margin-bottom: 30px;
+}
+.custom-tag{
+  margin-right: 6px
 }
 </style>
