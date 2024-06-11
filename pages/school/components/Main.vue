@@ -30,14 +30,14 @@
           <el-checkbox-button v-for="tag in tags" :key="tag.en" :label="tag.en">{{ tag[lang] }}</el-checkbox-button>
         </el-checkbox-group>
     </el-row>
-      <h1><strong>{{ lang == 'zh' ? 'GIS-Info 院校指南' : 'GIS-Info Institution Guide' }}</strong></h1>
-        {{ lang == 'zh' ? 'GIS-Info院校指南公益项目发起于2019年9月，最新版本更新时间为2021年9月，旨在提供及时且全面的全球GIS及相关专业院校信息。信息由来自世界各地GIS及城市规划等相关专业名校的在读学生、近期毕业校友或青年教师提供，内容主要包括各院系的优势科研方向、开设学位和导师信息。希望这份指南能为有留学意向的GIS相关专业朋友们提供帮助和支持。' : 'This School Instruction Project was launched in September 2019, and the latest version will be updated in September 2021, aiming to provide timely and comprehensive information on global GIS and related professional colleges. The information is provided by current students, recently graduated alumni or young teachers from prestigious schools of GIS and urban planning and other related majors around the world. We hope this guide can provide help and support for GIS-related professional friends who intend to study abroad.' }}
+      <h1><strong>{{ lang == 'zh' ? 'GIS-Info 院校指南' : 'GISphere Guide' }}</strong></h1>
+        {{ lang == 'zh' ? 'GIS-Info院校指南公益项目发起于2019年9月，最新版本更新时间为2021年9月，旨在提供及时且全面的全球GIS及相关专业院校信息。信息由来自世界各地GIS及城市规划等相关专业名校的在读学生、近期毕业校友或青年教师提供，内容主要包括各院系的优势科研方向、开设学位和导师信息。希望这份指南能为有留学意向的GIS相关专业朋友们提供帮助和支持。' : 'Launched in September 2019, the GISphere Guide Project continues to be actively updated, with the most recent version as of April 2023. Information for the guide is collected from current students, recent graduates, and young faculty involved in GIS-related programs from around the globe. Our goal is to offer current and comprehensive information to help students applying to GIS graduate programs.' }}
       <br/>
       <br/>
       
       <!-- Embed Map -->
       <div class="map-container">
-        <iframe width="93%" height="450" frameborder="0" id="maptableEmbedMap" src="https://maptable.com/s/embed/d344uyaa85j4?loc=15.25,52.63,2.48z" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe id="maptableEmbedMap" width="93%" height="450" frameborder="0"  src="https://maptable.com/s/embed/d344uyaa85j4?loc=15.25,52.63,2.48z" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <br/>
         <b><i class="el-icon-s-opportunity"></i>
@@ -70,11 +70,11 @@
       <h2><i class="el-icon-s-check"></i>{{ lang == 'zh' ? '版权' : 'Copyright' }}</h2>
       {{ lang == 'zh' ? '本文档遵循CC BY-NC 4.0许可，如需非商业转载或修改，请给出署名；商业转载' : 'This guide is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License' }}
       <h2><i class="el-icon-info"></i>{{ lang == 'zh' ? '提示' : 'Tips' }}</h2>
-      {{ lang == 'zh' ? `本文档包含 ${Object.keys(countries)?.length} 个国家和地区的 ${Object.keys(schools)?.length} 条院校信息，可以通过页面 Ctrl + F （Mac 设备为 cmd + F）快速检索` : `This document contains information of ${Object.keys(schools)?.length} institutions in ${Object.keys(countries)?.length} countries, which can be quickly retrieved by pressing Ctrl + F (or cmd + F on Mac) on the page` }}
+      {{ lang == 'zh' ? `本文档包含400多个院校的超过550个专业院系超过2000条导师的信息。其中包含导师以及课题组具体的研究方向（例如GIS，RS，城市交通等）。可以通过页面 Ctrl + F 快速检索` : `GISphere Guide includes profiles of over 2,000 tenured-track faculty from 550+ departments within 400+ academic institutions. These faculty members specialize in a range of fields, including Geographic Information Science (GIS), Global Navigation Satellite Systems (GNSS), Remote Sensing (RS), physical geography, human geography, urban planning and transportation. You can quickly retrieve information by pressing Ctrl + F (or Cmd + F on Mac) on the webpage.` }}
       <h2><i class="el-icon-s-custom"></i>{{ lang == 'zh' ? '作者名单' : 'Contributors' }}</h2>
         {{ lang == 'zh' ? '下面是撰写条目或提供院校信息的作者名单。按姓氏拼音排序。为保护隐私，我们不公开作者的单位信息。部分作者为匿名作者，故在此未予列出。' : 'Below is a list of authors who wrote entries or provided information about one or more institutions. Some authors are anonymous and therefore not listed here. Per the local custom, Chinese surnames are written before the given names.' }}
       <h4>Content providers</h4>
-        Yunqi An(安云琪), Weichen Cao(曹伟辰), Yanjia Cao(曹彦佳), Huanfa Chen(陈焕发), Long Chen(陈龙), Xi Chen(陈茜), Yikuan Chen(陈艺宽), Yu Chen(陈昱), Ketian Chen(陈可天), Yanbing Chen(陈彦冰), Jingyi Cheng(程敬宜), Nan Cui(崔楠), Wencong Cui(崔文聪), Shaoqing Dai(戴劭勍), Weichuan Dong(董维川), Xinhao Du(杜新浩), Yao Du(杜瑶), Chenxi Duan(段晨曦), Muxi Duan(段牧溪), Yilun Fan(范宜伦), Qingyuan Fei(费庆源), Xiaorui Feng(冯晓睿), Yao Feng(冯瑶), Sheng Fu(付圣), Peng Gao(高鹏), Yunya Gao(高芸雅), Chen Guo(郭晨), Keyu Guo(郭科宇), Xuerui Guo(郭雪蕊), Xiao Han(韩笑), Chang He(何畅), Xu He(何旭), Yiyi He(何伊伊), Hao Hu(胡昊), Jilin Hu(胡吉林), Yingjie Hu(胡英杰), Yujie Hu(胡于杰), Guan Huang(黄冠), Jiawei Huang(黄佳玮), Qianxia Huang(黄谦夏), Xiao Huang(黄啸), Xinke Huang(黄馨可), Dongqi Jiang(贾东启), Yuhao Kang(康雨豪), Jiameng Lai(赖佳梦), Bayi Li(李八一), Bowen Li(李博文), Hao Li(李浩), Haochen Li(李皓宸), Jia Li(李佳), Junan Li(李俊安), Liang Li(李良), Maine Li(李缅因), Qinghua Li(李清华), Shuo Li(李烁), Xiaojiang Li(李小江), Yi Li(李艺), Yuanxiang Li(李元翔), Ziqi Li(李子奇), Zisheng Li(李子升), Ting Lian(连婷), Xiaofan Liang(梁晓帆), Qianru Liao(廖倩儒), Xizhe Lin(林熙哲), Nianhua Liu(刘年华), Qiliang Liu(刘启亮), Ruowei Liu(刘若葳), Wen Liu(刘雯), Xiaojian Liu(刘晓健), Xinyi Liu(刘欣宜), Yuyan Liu(刘昱妍), Zhenyu Liu(刘振宇). Zhuoming Liu(刘卓明), Jianing Lu(卢加宁), Hui Luan(栾辉), Fangzheng Lyu(吕方正), Chao Ma(马超), Qingyu Ma(马擎宇), Yuchi Ma(马宇驰), Gengchen Mai(买庚辰), Fanlin Meng(孟凡林), Ye Mu(穆野), Zhen Pang(庞真), Qian Peng(彭倩), Tian Qiao(乔天), Guangyun Qu(屈光耘), Quan Ran(冉泉), Jinmeng Rao(饶锦蒙), Jing Rao(饶婧), Zexie Ren(任泽茜), Xia Shi(石霞), Yunrui Si(司云瑞), Qiuran Song(宋秋然), Wanying Song(宋万营), Chenyu Su(苏辰雨), Yifen Sun(孙一璠), Mengxun Tan(谭孟荀), Xiaoyue Tan(谭晓悦), Anqi Tang(唐安琪), Xinyi Tong(童馨仪), Haiming Wang(王海明), Sui Wang(王邃), Yaoli Wang(王瑶莉), Helan Wei(卫贺兰), Xinyuan Wei(魏辛源), Di Wu(吴迪), Qiusheng Wu(吴秋生), Xinhao Wu(吴欣皓), Yutan Xie(谢雨潭), Jin Xing(邢进), Fangjie Xu(徐芳洁), Haowen Xu(徐浩文), Jiazhi Xu(徐佳智), Yawen Xu(徐雅雯), Ziqing Xu(许子清), Kai Xue(薛凯), Shuhong Yan(晏澍虹), Jiaxin Yang(杨家鑫), Mei Yang(杨梅), Tingfang Yang(杨庭方), Yingli Yang(杨莹丽), Yuanxuan Yang(杨源譞), Shan Ye(叶山), Xiang Ye(叶翔), Jian Yi(易健), Manzhu Yu(于曼竹), Wanling Yu(于婉灵), Zhendong Yuan(袁振东), Yuanwen Yue(岳远紊), Kexin Zeng(曾可欣), Xun Zhai(翟寻), Fan Zhang(张帆), Jingrui Zhang(张晶睿), Jingyi Zhang(张婧祎), Jingyuan Zhang(张景源), Lan Zhang(张兰), Weixing Zhang(张蔚行), Yaxuan Zhang(张雅璇), Ying Zhang(张颖), Jing Zhang(章静), Jiayan Zhao(赵家彦), Qunshan Zhao(赵群山), Yuxiao Zhao(赵雨潇), Hong Zhou(周泓), Jianxiong Zhou(周建雄), Lu Zhou(周璐), Rui Zhou(周瑞), Chunwu Zhu(朱春武), Feiyu Zhu(朱飞宇), Qianqian Zou(邹倩倩), Sajjad Muhammad, Donald A. Friend, Dipto Sarkar, Anthony Robinson, Filip Biljecki, Mehdi Chachar, Jason VanHorn, Abel Cerecero, F. Antonio Medrano, Mallory Sagehorn, Ana Villa, Elias Lago, Raj Mahavir, Yassine Zehaf, Youssef Bahja, Nate Deanna, Sergen Ozyakup, Dani Abbasi, Adamou Gudina, Or Caspi, Ryan Galbraith, Ricardo Barros Lourenço
+          Yunqi An(安云琪), Xiaojun Bu(卜小浚),Qian Cao(曹前),Weichen Cao(曹伟辰), Yanjia Cao(曹彦佳), Huanfa Chen(陈焕发), Long Chen(陈龙),Pengyu Chen(陈鹏宇), Xi Chen(陈茜), Yikuan Chen(陈艺宽), Yu Chen(陈昱), Ketian Chen(陈可天), Yanbing Chen(陈彦冰), Jingyi Cheng(程敬宜), Nan Cui(崔楠), Wencong Cui(崔文聪), Shaoqing Dai(戴劭勍), Weichuan Dong(董维川), Xinhao Du(杜新浩), Yao Du(杜瑶), Chenxi Duan(段晨曦), Muxi Duan(段牧溪), Yilun Fan(范宜伦), Qingyuan Fei(费庆源), Xiaorui Feng(冯晓睿), Yao Feng(冯瑶), Sheng Fu(付圣), Peng Gao(高鹏), Yunya Gao(高芸雅), Chen Guo(郭晨), Keyu Guo(郭科宇), Xuerui Guo(郭雪蕊), Xiao Han(韩笑), Chang He(何畅), Xu He(何旭), Yang Hu(胡洋),Yiyi He(何伊伊), Hao Hu(胡昊), Jilin Hu(胡吉林), Yingjie Hu(胡英杰), Yujie Hu(胡于杰), Guan Huang(黄冠), Jiawei Huang(黄佳玮), Qianxia Huang(黄谦夏), Xiao Huang(黄啸), Xinke Huang(黄馨可), Dongqi Jiang(贾东启), Yuhao Kang(康雨豪), Jiameng Lai(赖佳梦), Bayi Li(李八一), Bowen Li(李博文), Dingyiqi Li(李丁一祺),Hao Li(李浩), Haochen Li(李皓宸), Jia Li(李佳), Junan Li(李俊安), Liang Li(李良), Maine Li(李缅因), Pengbo Li(李蓬勃),Qinghua Li(李清华), Shuo Li(李烁), Xiaojiang Li(李小江), Yi Li(李艺), Yuanxiang Li(李元翔), Ziqi Li(李子奇), Zisheng Li(李子升), Ting Lian(连婷), Xiaofan Liang(梁晓帆), Qianru Liao(廖倩儒), Xizhe Lin(林熙哲), Haokun Liu(刘昊坤),Nianhua Liu(刘年华), Qiliang Liu(刘启亮), Ruowei Liu(刘若葳), Wen Liu(刘雯), Xiaojian Liu(刘晓健), Xinyi Liu(刘欣宜), Yuyan Liu(刘昱妍), Zhenyu Liu(刘振宇). Zhuoming Liu(刘卓明),Yuzhu Long(龙珏竹), Jianing Lu(卢加宁), Hui Luan(栾辉), Fangzheng Lyu(吕方正), Chao Ma(马超), Qingyu Ma(马擎宇), Yuchi Ma(马宇驰), Gengchen Mai(买庚辰), Fanlin Meng(孟凡林), Ye Mu(穆野), Zhen Pang(庞真), Qian Peng(彭倩), Tian Qiao(乔天), Guangyun Qu(屈光耘), Quan Ran(冉泉), Jinmeng Rao(饶锦蒙), Jing Rao(饶婧), Zexie Ren(任泽茜), Xia Shi(石霞), Yunrui Si(司云瑞), Qiuran Song(宋秋然), Wanying Song(宋万营), Chenyu Su(苏辰雨), Yifen Sun(孙一璠), Mengxun Tan(谭孟荀), Xiaoyue Tan(谭晓悦), Anqi Tang(唐安琪), Xinyi Tong(童馨仪), Haiming Wang(王海明), Sui Wang(王邃), Yaoli Wang(王瑶莉), Helan Wei(卫贺兰),Yikang Wang(王亦康), Xinyuan Wei(魏辛源), Di Wu(吴迪), Qiusheng Wu(吴秋生), Xinhao Wu(吴欣皓), Yutan Xie(谢雨潭), Jin Xing(邢进), Fangjie Xu(徐芳洁), Haowen Xu(徐浩文), Jiazhi Xu(徐佳智), Yawen Xu(徐雅雯), Ziqing Xu(许子清), Kai Xue(薛凯), Shuhong Yan(晏澍虹), Jiaxin Yang(杨家鑫), Mei Yang(杨梅),Songxi Yang(杨淞晰), Tingfang Yang(杨庭方), Yingli Yang(杨莹丽), Yuanxuan Yang(杨源譞), Shan Ye(叶山), Xiang Ye(叶翔), Jian Yi(易健), Chengshen Yin(尹承深),Manzhu Yu(于曼竹), Wanling Yu(于婉灵), Zhendong Yuan(袁振东), Yuanwen Yue(岳远紊), Kexin Zeng(曾可欣), Xun Zhai(翟寻), Fan Zhang(张帆), Jingrui Zhang(张晶睿), Jingyi Zhang(张婧祎), Jingyuan Zhang(张景源), Lan Zhang(张兰), Weixing Zhang(张蔚行), Yaxuan Zhang(张雅璇), Ying Zhang(张颖), Jing Zhang(章静), Jiayan Zhao(赵家彦), Qunshan Zhao(赵群山), Yuxiao Zhao(赵雨潇), Hong Zhou(周泓), Jianxiong Zhou(周建雄), Lu Zhou(周璐), Rui Zhou(周瑞), Chunwu Zhu(朱春武), Feiyu Zhu(朱飞宇), Qianqian Zou(邹倩倩), Sajjad Muhammad, Donald A. Friend, Dipto Sarkar, Anthony Robinson, Filip Biljecki, Mehdi Chachar, Jason VanHorn, Abel Cerecero, F. Antonio Medrano, Mallory Sagehorn, Ana Villa, Elias Lago, Raj Mahavir, Yassine Zehaf, Youssef Bahja, Nate Deanna, Sergen Ozyakup, Dani Abbasi, Adamou Gudina, Or Caspi, Ryan Galbraith, Ricardo Barros Lourenço
       <h4>Editors</h4>
         Yuhao Kang(康雨豪), Shan Ye(叶山), Haokun Liu(刘昊坤), Jingyuan Zhang(张景源), Shaoqing Dai(戴劭勍), Chenxi Duan(段晨曦), Xinke Huang(黄馨可), Haochen Li(李皓宸), Xiao Li(李肖), Yuyan Liu(刘昱妍), Jinmeng Rao(饶锦蒙), Zexi Ren(任泽茜), Xinyi Tong(童馨仪), Xiang Ye(叶翔), Yuanwen Yue(岳远紊), Jingrui Zhang(张晶睿), Chunwu Zhu(朱春武), Yanbing Chen(陈彦冰)
       <h4>Website managers</h4>
@@ -141,29 +141,32 @@ export default {
         {en: 'Transportation', zh: '交通'},
       ],
       selectedTags: [],
-      loading: false,
+      loading: true,
     }
   },
   /**
    * 使用 fetch 方法是为了服务端渲染，参考 https://nuxtjs.org/docs/features/data-fetching
    */
   async fetch() {
-  // 向后端发起请求
-  await this.$axios
-    .get('/api/schools')
-    .then((res) => {
-      this.setData(res);
-    })
-    .catch((error) => {
-      console.log('err', error)
-      // 跳转到error界面
-      this.$router.push('/error')
-    })
+    // 向后端发起请求
+    await this.$axios
+      .get('/api/schools')
+      .then((res) => {
+        this.setData(res);
+      })
+      .catch((error) => {
+        console.log('err', error)
+        // 跳转到error界面
+        this.$router.push('/error')
+      })
   },
   computed: {},
   watch: {
   },
   mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
   },
   methods: {
     setData(res){
@@ -215,6 +218,7 @@ export default {
       this.countryToSchool = countryToSchool;
       this.schools = schools;
       this.schoolToPeople = schoolToPeople;
+      this.loading = false;
     },
     goAnchor(hash) {
       window.location.hash=hash

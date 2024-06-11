@@ -50,13 +50,14 @@
           </div>
         </div>
       </div>
-      <el-button class="white-book-button explore-job-recruiting" round @click="$router.push('/white-book')">{{ lang == 'zh' ? 'GISphere 留学指南 · 大数据报告白皮书' : 'GISphere Global Admission Annual Review' }}</el-button>
-      <!-- Contact Us pop up card -->
-      <div>
+      <!-- Functional Buttons -->
+      <div class="functional-buttons">
+        <el-button class="white-book-button" round @click="dialogFormVisible = true">{{ lang == 'zh' ? '订阅邮箱' : 'Subscribe' }}</el-button>
+        <el-button class="white-book-button explore-job-recruiting" round @click="$router.push('/white-book')">{{ lang == 'zh' ? 'GISphere 留学指南 · 大数据报告白皮书' : 'GISphere Global Admission Annual Review' }}</el-button>
+        <!-- Contact Us pop up card -->
         <!-- ZH -->
         <div
           v-if="lang == 'zh'"
-          class="contact-us"
           @mouseover="showContactCard = true"
           @mouseleave="showContactCard = false"
         >
@@ -71,12 +72,11 @@
               </div>
             </div>
           </transition>
-          <el-button type="info" style="border: solid 2px #ffffff00;" round>联系我们 / 加入我们</el-button>
+          <el-button type="info" class="contact-us" round>联系我们 / 加入我们</el-button>
         </div>
         <!-- EN -->
         <div
           v-if="lang == 'en'"
-          class="contact-us"
           @mouseover="showContactCard = true"
           @mouseleave="showContactCard = false"
         >
@@ -91,40 +91,25 @@
               </div>
             </div>
           </transition>
-          <el-button type="info" round style="border: solid 2px #ffffff00;">Contact Us / Join Us</el-button>
+          <el-button type="info" round class="contact-us">Contact Us / Join Us</el-button>
         </div>
       </div>
     </div>
 
     <!-- Project Introduction -->
     <div class="field">
-      <div v-if="lang == 'zh'" class="introduce-page">
+      <div class="introduce-page">
         <div class="intro-title">
-          项目介绍
+          {{ lang == 'zh' ? '项目介绍' : 'Project Introduction' }}
           <hr class="short-horizontal-line" />
         </div>
-        <div class="intro-text-zh">{{ projectIntroZH }}</div>
+        <div class="intro-text-zh">{{ lang == 'zh' ? projectIntroZH : projectIntroEN }}</div>
         <div class="intro-tag">
-          <div class="tag">{{ subProject[0] }}</div>
-          <div class="tag">{{ subProject[1] }}</div>
-          <div class="tag">{{ subProject[2] }}</div>
-          <div class="tag">{{ subProject[3] }}</div>
-          <div class="tag">{{ subProject[4] }}</div>
-        </div>
-      </div>
-
-      <div v-if="lang == 'en'" class="introduce-page">
-        <div class="intro-title">
-          Project Introduction
-          <hr class="short-horizontal-line" />
-        </div>
-        <div class="intro-text-en">{{ projectIntroEN }}</div>
-        <div class="intro-tag">
-          <div class="tag">{{ subProject[0] }}</div>
-          <div class="tag">{{ subProject[1] }}</div>
-          <div class="tag">{{ subProject[2] }}</div>
-          <div class="tag">{{ subProject[3] }}</div>
-          <div class="tag">{{ subProject[4] }}</div>
+          <div class="tag"><span style="color: #7944dd;">GIS</span>-Info</div>
+          <div class="tag"><span style="color: #7944dd;">GIS</span>phere</div>
+          <div class="tag"><span style="color: #7944dd;">GIS</span>ource</div>
+          <div class="tag"><span style="color: #7944dd;">GIS</span>pace</div>
+          <div class="tag"><span style="color: #7944dd;">GIS</span>alon</div>
         </div>
       </div>
     </div>
@@ -161,8 +146,7 @@
                 href="https://www.gisphere.net/"
                 target="_blank"
                 class="to-be-added"
-                >完整院校列表</el-link
-              >
+                >完整院校列表</el-link>
             </div>
           </div>
         </div>
@@ -267,6 +251,37 @@
         >
       </span>
     </el-dialog>
+    <el-dialog title="订阅 ( Subscribe )" :visible.sync="dialogFormVisible" :modal-append-to-body="false" :top="'17vh'">
+      <el-form :model="form">
+        <el-form-item
+          label="邮箱 ( email )"
+          prop="email"
+          :rules="[
+            { required: true, message: '请输入邮箱地址 ( Please enter your email address. )', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址 ( Please enter a valid email address. )', trigger: ['blur', 'change'] }
+          ]">
+          <el-input v-model="form.email"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="名 ( first name )"
+          :rules="[
+            { required: true, message: '请输入 ( Please enter your first name. )', trigger: 'blur' },
+          ]">
+          <el-input v-model="form.firstName" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="姓 ( last name )"
+          :rules="[
+            { required: true, message: '请输入 ( Please enter your last name. )', trigger: 'blur' },
+          ]">
+          <el-input v-model="form.lastName" autocomplete="off"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleFormSubmit">提 交</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -281,12 +296,17 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      dialogFormVisible: false,
       showContactCard: false,
       projectIntroZH: ProjectIntro[0],
       projectIntroEN: ProjectIntro[1],
-      subProject: ['GIS-Info', 'GISphere', 'GISource', 'GISpace', 'GISalon'],
       universitiesZH: universities.zh,
       universitiesEN: universities.en,
+      form: {
+        email:'',
+        firstName: '',
+        lastName: '',
+      },
     }
   },
   head() {
@@ -336,6 +356,31 @@ export default {
     },
     disableCopy(e) {
       e.preventDefault()
+    },
+    // 提交订阅邮件的请求
+    handleFormSubmit() {
+      this.dialogFormVisible = false;
+      const form = this.form;
+
+      // 构造个人信息和邮件列表标签
+      const params = {
+        first_name: form.firstName,
+        last_name: form.lastName,
+        email: form.email,
+        mailing_list_slug: 'test'
+      };
+
+      this.$axios.post('api/subscribe', params)
+      .then(res => {
+        this.$message({
+          message: res.data.message,
+          type: 'success'
+        });
+      })
+      .catch(err => {
+        this.$message.error(err);
+      });
+      
     },
   },
 }
@@ -395,7 +440,8 @@ export default {
   border: solid 2px #2c3aaa;
   width: 220px;
   height: 50px;
-  font-size: 16px;
+  font-size: 17px;
+  font-weight: 100;
 }
 .explore-programs {
   color: #2c3aaa;
@@ -406,12 +452,12 @@ export default {
   transition: 100ms ease-in-out;
 }
 .contact-us {
-  position: absolute;
-  bottom: 60px;
-  right: 60px;
+  margin-left: 10px;
+  border: solid 2px #ffffff00;
 }
 .contact-us-card {
   background-color: transparent;
+  margin-left: 10px;
 }
 .intro-title {
   text-align: center;
@@ -444,13 +490,16 @@ export default {
   justify-content: space-evenly;
 }
 .tag {
-  background-color: #dcdfe6;
   border-radius: 10px;
-  height: 60px;
-  line-height: 60px;
-  width: 140px;
-  font-size: medium;
+  height: 50px;
+  line-height: 50px;
+  width: 200px;
+  border: solid 2px #2c3aaa;
+  font-size: 20px;
   text-align: center;
+  font-style: oblique;
+  background: linear-gradient(120deg,#ffffff, #ffffff 89%, #c5c9e3 89%, #c5c9e3 90%, #ffffff 90%,#ffffff 94%, #c5c9e3 94%, #c5c9e3 95%, #ffffff 95%);
+  font-weight: 800;
 }
 .uni-table {
   border-collapse: collapse;
@@ -492,7 +541,7 @@ export default {
   border-radius: 20px;
   height: 171.68px;
   width: 171.68px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .contact-us-qrcode > img {
   width: 80%;
@@ -586,9 +635,7 @@ export default {
   }
 }
 .white-book-button{
-  position: absolute;
-  bottom: 60px;
-  right: 260px;
+  margin-left: 10px;
   border: solid 2px #2c3aaa;
   color: #2c3aaa;
   background-color: rgba(255,255,255,0.5);
@@ -596,5 +643,14 @@ export default {
 .white-book-button:hover {
   color: #fff;
   background-color: #53389e;
+}
+.functional-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 60px;
+  right: 60px;
 }
 </style>
